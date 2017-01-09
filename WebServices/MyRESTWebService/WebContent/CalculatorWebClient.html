@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<p>Calling SimpleCalculator WebService</p>
+<script>
+const domain = "http://localhost:8080/MyRESTWebService/mywebservice/simplecalculator/";
+$(document).ready(function(){
+    $("button").click(function(){
+    	var url = domain + $('#operation :selected').text() + "/" + $('#op1').val() + "/" + $('#op2').val();
+        $.get(url, function(data, status){
+        	var service = data.childNodes;
+        	var operation = service[0].childNodes;
+        	var nodes = operation[0].childNodes;
+            console.log(nodes[0].firstChild.nodeValue+ " , " +nodes[1].firstChild.nodeValue);
+            $('#result').text(nodes[1].firstChild.nodeValue);
+        });
+    });
+});
+
+</script>
+<div id="main" name="name">
+Operand 1 = <input type="text" id="op1" name="op1">
+Operand 2 = <input type="text" id="op2" name="op2">
+<select id="operation">
+  <option value="addition">addition</option>
+  <option value="subtraction">subtraction</option>
+  <option value="division">division</option>
+  <option value="mulitplication">multiplication</option>
+</select>
+<button>Submit</button><br /><br />
+Result = <span id="result" name="result"></span>
+</div>
+</body>
+</html>
