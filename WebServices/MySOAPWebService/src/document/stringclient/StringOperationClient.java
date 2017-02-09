@@ -1,11 +1,11 @@
-package rpc.stringclient;
+package document.stringclient;
 
 import java.net.MalformedURLException;
 import java.net.URL;  
 import javax.xml.namespace.QName;  
 import javax.xml.ws.Service;
 
-import rpc.stringservice.StringOperation;
+import document.stringservice.StringOperation;
 
 public class StringOperationClient {
 
@@ -21,7 +21,7 @@ public class StringOperationClient {
 		 * 1st argument = xmlns:tns in WSDL
 		 * 2nd argument = service name in WSDL
 		 */
-		QName qname = new QName("http://stringservice.rpc/", "StringOperationImplService");  
+		QName qname = new QName("http://stringservice.document/", "StringOperationImplService");  
         Service service = Service.create(url, qname);  
         StringOperation obj = service.getPort(StringOperation.class);  
         System.out.println(obj.getLength("teststring"));
